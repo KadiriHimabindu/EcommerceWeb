@@ -1,0 +1,86 @@
+﻿@model ProductVM
+
+<form method="post" class="row" enctype="multipart/form-data">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h3 class="text-primary">Create Product</h3>
+            <hr />
+        </div>    
+    </div>
+    <div class="mb-3 row p-1">
+        <label asp-for="Product.Title" class="p-0"></label>
+        <input asp-for="Product.Title" class="form-control"/>
+        <span asp-validation-for="Product.Title" class="text-danger"></span>
+    </div>
+    <div class="mb-3 row p-1">
+        <label for="Product.Description">Description</label>
+        <textarea asp-for="Product.Description" class="p-0"></textarea>
+    </div>
+    <div class="mb-3 row p-1">
+        <label asp-for="Product.MadeIn" class="p-0"></label>
+        <input asp-for="Product.MadeIn" class="form-control" />
+        <span asp-validation-for="Product.MadeIn" class="text-danger"></span>
+    </div>
+    <div class="mb-3 row p-1">
+        <label asp-for="Product.Brand" class="p-0"></label>
+        <input asp-for="Product.Brand" class="form-control" />
+        <span asp-validation-for="Product.Brand" class="text-danger"></span>
+    </div>
+    <div class="mb-3 row p-1">
+        <label asp-for="Product.ListPrice" class="p-0"></label>
+        <input asp-for="Product.ListPrice" class="form-control" />
+        <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+    </div>
+    <div class="mb-3 row p-1">
+        <label asp-for="Product.Price" class="p-0"></label>
+        <input asp-for="Product.Price" class="form-control" />
+        <span asp-validation-for="Product.Price" class="text-danger"></span>
+    </div>
+    <div class="mb-3 row p-1">
+        <label asp-for="Product.Price50" class="p-0"></label>
+        <input asp-for="Product.Price50" class="form-control" />
+        <span asp-validation-for="Product.Price50" class="text-danger"></span>
+    </div>
+    <div class="mb-3 row p-1">
+        <label asp-for="Product.Price100" class="p-0"></label>
+        <input asp-for="Product.Price100" class="form-control" />
+        <span asp-validation-for="Product.Price100" class="text-danger"></span>
+    </div>
+    <div class="form-floating py-2 col-12">
+        <select asp-for="@Model.Product.CategoryId" asp-items="@Model.CategoryList" class="form-select border-0 shadow">
+            <option disabled selected >--Select Options--</option>
+        </select>
+        <label asp-for="Product.CategoryId" class="ms-2"></label>
+        <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+    </div>
+    <div class="mb-3 row p-1">
+        <label for="Product.ImageUrl">ImageUrl</label>
+        <input type="file" name="file" class="p-0"/>
+        <label asp-for="Product.ImageUrl" class="form-control" />
+    </div>
+    <div class="row">
+        <div class="col-6 col-md-3">
+        <button type="submit" class="btn btn-primary form-control">Create</button>
+    </div>
+    <div class="col-6 col-md-3">
+        <a asp-controller="Product"  asp-action ="Index" class="btn btn-secondary border form-control">Back to list</a>
+    </div>
+   
+    </div>
+    
+</form>
+
+
+
+@section Scripts{
+    <script>
+        tinymce.init({
+            selector:'textarea',
+            plugins:'anchor autolink charmap codesample emoticons image link lists',
+            toolbar :'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | align lineheight | numlist bullist indent outdent',
+        })
+    </script>
+    @{
+        <partial name="_ValidationScriptsPartial"/>
+    }
+}
