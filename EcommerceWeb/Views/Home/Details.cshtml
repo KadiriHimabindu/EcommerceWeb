@@ -70,23 +70,22 @@
                             @Html.Raw(@Model.Description)
                         </div>
                         <div class="row pl-2 mb-3">
-                            <div class="col-md-4">
+                            <div class="col-md-5">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text bg-primary text-white border-0 fw-semibold"
-                                        id="inputGroup-sizing-default">
+                                        id="spancount">
                                         Count
                                     </span>
-                                    <input type="number" value="1" class="form-control text end"
-                                           arial-label="Sizing example input" aria-describedby="inputGroup-sizing-default" />
+                                    <input type="number" value="1" min="1" max="100" name="Count" id="Count"/>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-12 col-md-6 pb-1">
-                            <button type="submit" disabled
+                            <button type="submit" onclick="AddtoCart('@Model.Id')"
                                 class="btn btn-primary bg-gradient w-100 py-2 text-uppercase flex-sm-wrap">
-                                Add to Cart(Coming Soon...)
+                                Add to Cart
                             </button>
                         </div>
                     </div>
@@ -95,3 +94,18 @@
         </div>
     </div>
 </form>
+<script>
+    function AddtoCart(ProductId){
+        debugger;
+        var count=$('#Count').val();
+        var route = '@Url.Action("AddtoCart","Home")?ProductId=' + ProductId +'&Count=' + count;
+        $.ajax({
+            'url': route,
+            'type': 'GET',
+            'dataType': 'html',
+            success:function(response){
+                
+            }
+        });
+    }
+</script>
